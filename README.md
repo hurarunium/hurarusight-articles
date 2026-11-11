@@ -30,6 +30,31 @@ tags: [サイト制作]
 
 **注意**: このリポジトリは public なので、`draft` の記事も GitHub 上では誰でも読めます。公開前に隠したい内容は push しないでください。
 
+## 実績(Works)の書き方
+
+```bash
+npm run new:work <名前>   # ひな形を作る(名前は半角の英小文字・数字・ハイフン)
+```
+
+- 実績は `works/<名前>.md` に置きます。**ファイル名がそのまま URL** になります(`/works/<名前>/`)。
+- 本文は記事と同じように自由に書けます(空でもかまいません)。
+- `period` は書いた文字をそのまま出します。一覧の並び順は `date` で決まります。
+
+```yaml
+---
+title: 実績の名前
+description: 一言の説明
+date: "2026-10"        # いつの実績か(YYYY-MM または YYYY-MM-DD)。並び順に使う
+period: 3ヶ月           # 制作期間(省略可)
+tech: [Astro, TypeScript]   # 使った技術(省略可)
+tags: [Web]            # 種類のタグ(省略可。記事のタグとは別に扱う)
+links:                 # あるものだけ書く(省略可)
+  - { label: GitHub, url: "https://github.com/..." }
+  - { label: 関連記事, url: /articles/make-profile-site/ }
+status: draft          # draft / unlisted / published(記事と同じ意味)
+---
+```
+
 ## 書きながらサイトで確認する
 
 サイトのリポジトリと同じ階層に、このリポジトリを置きます。

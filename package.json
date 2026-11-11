@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "new": "node scripts/new.mjs",
+    "new:work": "node scripts/new-work.mjs",
     "check": "node scripts/check.mjs"
   }
 }
