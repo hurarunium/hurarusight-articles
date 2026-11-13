@@ -51,7 +51,6 @@ tech: [Astro, TypeScript]   # 使った技術(省略可)
 tags: [Web]            # 種類のタグ(省略可。記事のタグとは別に扱う)
 links:                 # あるものだけ書く(省略可)
   - { label: GitHub, url: "https://github.com/..." }
-  - { label: 関連記事, url: /articles/make-profile-site/ }
 image: /article-images/works/my-game/cover.png   # 一覧と詳細に出す画像(省略可)
 status: draft          # draft / unlisted / published(記事と同じ意味)
 ---
