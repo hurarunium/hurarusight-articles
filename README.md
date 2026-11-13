@@ -57,6 +57,22 @@ status: draft          # draft / unlisted / published(記事と同じ意味)
 ---
 ```
 
+## About(自己紹介)の書き方
+
+- 自己紹介は、リポジトリ直下の `about.md` の1つです(`/about/` に出ます)。無いときは、サイトに About のページとメニューが出ません。
+- 本文は、見出し(`##`)ごとに自由に書けます。名前・a.k.a.・リンクは、サイトの `content.ts` から出すので、ここには書きません。
+- 写真と SKILLS のアイコンは `images/about/` に置きます。`status: draft` の間は、公開サイトに出ません。
+
+```yaml
+---
+role: 肩書き(省略可)
+photo: /article-images/about/photo.webp   # 写真(省略可)
+skills:                                    # 使える言語・ツール(省略可)
+  - { name: Unity, icon: /article-images/about/skills/unity.svg, note: ゲームエンジン }   # note は省略可
+status: draft          # draft / published
+---
+```
+
 ## 書きながらサイトで確認する
 
 サイトのリポジトリと同じ階層に、このリポジトリを置きます。

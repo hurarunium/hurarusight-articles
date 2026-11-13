@@ -46,8 +46,23 @@ if (articleCount === 0) errors.push('articles/ に記事がありません');
 // Works は0件でもよい(フォルダが無ければ検証しない)
 const workCount = existsSync('works') ? checkFolder('works', /^"?\d{4}-\d{2}(-\d{2})?"?$/, 'YYYY-MM または YYYY-MM-DD') : 0;
 
+// About(自己紹介)は about.md の1つ。無ければ検証しない(サイトは About のページを作らない)
+const hasAbout = existsSync('about.md');
+if (hasAbout) {
+  const fm = readFileSync('about.md', 'utf-8').match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1];
+  if (fm === undefined) {
+    errors.push('about.md: 先頭に frontmatter(--- で囲んだ部分)がありません');
+  } else {
+    const status = /^status:[ \t]*(.*)$/m.exec(fm)?.[1].trim();
+    if (status !== undefined && !statuses.includes(status)) errors.push(`about.md: status は ${statuses.join(' / ')} のどれかにしてください`);
+    checkImage('about.md', /^photo:[ \t]*(.*)$/m.exec(fm)?.[1].trim());
+    // skills の各行の icon
+    for (const [, icon] of fm.matchAll(/icon:[ \t]*([^,}\s]+)/g)) checkImage('about.md', icon);
+  }
+}
+
 if (errors.length > 0) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
-console.log(`OK: ${articleCount}本の記事と${workCount}件の実績を確認しました`);
+console.log(`OK: ${articleCount}本の記事と${workCount}件の実績${hasAbout ? '、About' : ''}を確認しました`);
