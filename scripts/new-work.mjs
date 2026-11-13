@@ -17,6 +17,6 @@ const thisMonth = new Date().toLocaleDateString('sv-SE').slice(0, 7); // YYYY-MM
 mkdirSync('works', { recursive: true });
 writeFileSync(
   file,
-  `---\ntitle: \ndescription: \ndate: "${thisMonth}"\nperiod: \ntech: []\ntags: []\nlinks: []\nstatus: draft\n---\n\n`,
+  `---\ntitle: \ndescription: \ndate: "${thisMonth}"\nperiod: \ntech: []\ntags: []\nlinks: []\nimage: \nstatus: draft\n---\n\n`,
 );
 console.log(`作成しました: ${file}`);

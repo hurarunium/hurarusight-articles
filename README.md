@@ -39,6 +39,7 @@ npm run new:work <名前>   # ひな形を作る(名前は半角の英小文字�
 - 実績は `works/<名前>.md` に置きます。**ファイル名がそのまま URL** になります(`/works/<名前>/`)。
 - 本文は記事と同じように自由に書けます(空でもかまいません)。
 - `period` は書いた文字をそのまま出します。一覧の並び順は `date` で決まります。
+- 画像は省略できます。使うときは `images/works/<名前>/` に置き、`image` に `/article-images/works/<名前>/<ファイル名>` と書きます。一覧のカードと詳細ページの上に出ます(無い実績は文字だけで出ます)。本文には、記事と同じ書き方で画像を入れられます。
 
 ```yaml
 ---
@@ -51,6 +52,7 @@ tags: [Web]            # 種類のタグ(省略可。記事のタグとは別に
 links:                 # あるものだけ書く(省略可)
   - { label: GitHub, url: "https://github.com/..." }
   - { label: 関連記事, url: /articles/make-profile-site/ }
+image: /article-images/works/my-game/cover.png   # 一覧と詳細に出す画像(省略可)
 status: draft          # draft / unlisted / published(記事と同じ意味)
 ---
 ```

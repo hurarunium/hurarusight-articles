@@ -4,6 +4,18 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 const statuses = ['draft', 'unlisted', 'published'];
 const errors = [];
 
+// 画像のパス(/article-images/<images/ からのパス>)が、images/ に実在するかを確かめる。空欄なら何もしない
+function checkImage(path, value) {
+  const url = value?.replace(/^["']|["']$/g, '');
+  if (!url) return;
+  const prefix = '/article-images/';
+  if (!url.startsWith(prefix)) {
+    errors.push(`${path}: image は ${prefix} で始めてください(例: ${prefix}works/<名前>/cover.png)`);
+  } else if (!existsSync(`images/${url.slice(prefix.length)}`)) {
+    errors.push(`${path}: image の画像が見つかりません: images/${url.slice(prefix.length)}`);
+  }
+}
+
 // フォルダ内の .md を1つずつ検証する。datePattern は date に許す形式
 function checkFolder(folder, datePattern, dateFormat) {
   const files = readdirSync(folder).filter((f) => f.endsWith('.md'));
@@ -24,6 +36,7 @@ function checkFolder(folder, datePattern, dateFormat) {
     if (!datePattern.test(get('date') ?? '')) errors.push(`${path}: date は ${dateFormat} の形式にしてください`);
     const status = get('status');
     if (status !== undefined && !statuses.includes(status)) errors.push(`${path}: status は ${statuses.join(' / ')} のどれかにしてください`);
+    checkImage(path, get('image'));
   }
   return files.length;
 }
